@@ -1,0 +1,10 @@
+{% extends "auth_base.html.jinja" %}
+{% set action_title="Sign up" %}
+{% block additional_fields %}
+<div class="form-group">
+	<input type="password" class="form-control" name="password2" placeholder="Confirm your password">
+</div>
+{% endblock additional_fields %}
+{% block additional_buttons %}
+	<a href="{{ url_for('login_page') }}"><button type="button" class="btn btn-secondary">Sign in</button></a>
+{% endblock additional_buttons %}

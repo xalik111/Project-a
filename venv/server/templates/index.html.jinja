@@ -1,0 +1,86 @@
+{% extends "base.html.jinja" %} {% block title %} Dashboard {% endblock title %} {% block content %}
+<div class="row">
+    <div class="col-sm-4">
+        <form method="POST">
+            <div class="row">
+                <label for="staticOrderLimit" class="col-md-6 col-form-label">Order limit(USDT)</label>
+                <div class="col-sm-6">
+                    <input type="text" readonly class="form-control-plaintext" id="staticOrderLimit" value="{{current.order_amount}}">
+                </div>
+            </div>
+            <div class="form-group">
+                <input class="form-control text-left" type="text" placeholder="Set new limit" name="order_limit_amount">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="col-sm-4">
+        <form method="POST">
+            <div class="row">
+                <label for="staticMovingAverage" class="col-md-6
+                    col-form-label">MA limit(USDT)</label>
+                <div class="col-sm-6">
+                    <input type="text" readonly class="form-control-plaintext" id="staticMovingAverage" value="{{current.ma}}">
+                </div>
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" placeholder="Set new limit" name="ma">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="col-6 col-md-4">
+        <div class="form-group row">
+            <label for="staticBalanceUsdt" class="col-sm-4 col-form-label">Balance(USDT)</label>
+            <div class="col-sm-8">
+                <input type="text" readonly class="form-control-plaintext" id="staticBalanceUsdt" value="{{current.balance_usd}}">
+            </div>
+            <label for="staticBalanceBtc" class="col-sm-4 col-form-label">Balance(BTC)</label>
+            <div class="col-sm-8">
+                <input type="text" readonly class="form-control-plaintext" id="staticBalanceBtc" value="{{current.balance_btc}}">
+            </div>
+            <label for="staticBalanceSum" class="col-sm-4 col-form-label">Balance(Sum)</label>
+            <div class="col-sm-8">
+                <input type="text" readonly class="form-control-plaintext" id="staticBalanceSum" value="{{sum_balance}}">
+            </div>
+            <form method="POST">
+                <label for="inputUSDT" class="col-sm-6 col-form-label">Add USDT</label>
+                <div class="form-inline">
+                    <input type="text" class="form-control" id="inputUSDT" placeholder="Amount" name="add">
+                    <button type="submit" class="btn btn-primary mb-2">Add</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">Order time</th>
+            <th scope="col">Amount(USDT)</th>
+            <th scope="col">Amount(BTC)</th>
+            <th scope="col">MA</th>
+            <th scope="col">Type</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for order in order_list %}
+        <tr>
+            <th scope="row">{{order.id}}</th>
+            <td>{{order.date}}</td>
+            <td>{{order.amount_usdt}}</td>
+            <td>{{order.amount_btc}}</td>
+            <td>{{order.moving_average}}</td>
+            <td>{{order.tran_type}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}

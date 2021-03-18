@@ -1,0 +1,5 @@
+{% extends "auth_base.html.jinja" %}
+{% set action_title="Sign in" %}
+{% block additional_buttons %}
+	<a href="{{ url_for('register') }}"><button type="button" class="btn btn-secondary">Sign up</button></a>
+{% endblock additional_buttons %}

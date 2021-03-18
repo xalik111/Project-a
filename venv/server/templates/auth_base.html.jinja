@@ -1,0 +1,34 @@
+{% extends "base.html.jinja" %}
+{% block title %}
+	{{ action_title }}
+{% endblock title %}
+{% block content %}
+<div class="row justify-content-center login-form-row">
+	<div class="col-4">
+		<h2>{{ action_title }}</h2>
+		<form method="POST">
+			<div class="form-group">
+				<input type="text" class="form-control" name="login" placeholder="Enter your login">
+			</div>
+			<div class="form-group">
+				<input type="password" class="form-control" name="password" placeholder="Enter your password">
+			</div>
+			{% block additional_fields %}
+			{% endblock additional_fields %}
+			<div class="form-group text-center">
+				<button type="submit" class="btn btn-primary">{{ action_title }}</button>
+				{% block additional_buttons %}
+				
+				{% endblock additional_buttons %}
+			</div>
+		</form>
+		{% with messages = get_flashed_messages(with_categories=true) %}
+			{% if messages %}
+				{% for category, message in messages %}
+				<div class="alert alert-{{ category }}">{{ message }}</div>
+				{% endfor %}
+			{% endif %}
+		{% endwith %}
+	</div>
+</div>
+{% endblock content %}
